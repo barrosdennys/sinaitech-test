@@ -7,48 +7,39 @@ import utils.BasePage;
 import utils.DriverFactory;
 import utils.ResourcesParser;
 
+/**
+ *
+ * Class created to map all locators from the HomeEnergy page and to group the methods related to it
+ *
+ * @author Dennys Barros
+ *
+ */
 public class HomeEnergyPage {
-    private final WebDriver driver;
-    private final WebDriverWait wait;
     private final BasePage basePage;
-    private final ResourcesParser resourcesParser = new ResourcesParser();
-
-    private final By homeEnergyBanner = By.cssSelector("div#energy");
 
     private final By primaryHeatingSource = By.cssSelector("select#primaryHeatingSource");
-
     private final By naturalGasTextInput = By.cssSelector("input#naturalGasTextInput");
     private final By naturalGasSelectInput = By.cssSelector("select#naturalGasSelectInput");
-
     private final By electricityTextInput = By.cssSelector("input#electricityTextInput");
     private final By electricitySelectInput = By.cssSelector("select#electricitySelectInput");
     private final By electricityGreenInput = By.cssSelector("input#electricityGreenTextInput");
-
     private final By fuelTextInput = By.cssSelector("input#fuelTextInput");
     private final By fuelSelectInput = By.cssSelector("select#fuelSelectInput");
-
     private final By propaneTextInput = By.cssSelector("input#propaneTextInput");
     private final By propaneSelectInput = By.cssSelector("select#propaneSelectInput");
-
     private final By reduceACInput = By.cssSelector("input#energyAC");
     private final By reduceHeatInput = By.cssSelector("input#energyHeat");
-
     private final By lightsToReplaceInput = By.cssSelector("input#lightsToReplace");
-
     private final By powerManagementSelect = By.cssSelector("select#pwrMgmtSelect");
     private final By increaseGreenInput = By.cssSelector("input#increaseGreenInput");
-
     private final By coldWaterSelect = By.cssSelector("select#coldWaterSelect");
     private final By loadsPerWeek = By.cssSelector("input#loadsPerWeek");
     private final By airDrySelect = By.cssSelector("select#AirDrySelect");
-
     private final By percentageAirDrySelect = By.cssSelector("select#percentageAirDrySelect");
-
     private final By energyStartFridgeSelect = By.cssSelector("select#fridgeSelect");
     private final By energyStartFurnaceSelect = By.cssSelector("select#furnaceSelect");
     private final By energyStartWindowSelect = By.cssSelector("select#windowSelect");
     private final By continueToTransportationButton = By.cssSelector("button#to-transportation");
-
     private final By naturalGasCalculationValue = By.cssSelector("li.naturalGas .green-lb-total span");
     private final By electricityCalculationValue = By.cssSelector("li.electricity .green-lb-total span");
     private final By fuelOilCalculationValue = By.cssSelector("li.fuel .green-lb-total span");
@@ -56,9 +47,7 @@ public class HomeEnergyPage {
 
 
     public HomeEnergyPage(WebDriver driver) {
-        this.driver = driver;
         basePage = new BasePage(driver);
-        wait = DriverFactory.getWait();
     }
     
     public void selectPrimaryHeatingSource(String heating){

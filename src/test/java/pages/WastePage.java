@@ -6,9 +6,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BasePage;
 import utils.DriverFactory;
 
+/**
+ *
+ * Class created to map all locators from Waste page and to group the methods related to it
+ *
+ * @author Dennys Barros
+ *
+ */
 public class WastePage {
-    private final WebDriver driver;
-    private final WebDriverWait wait;
     private final BasePage basePage;
     private final By wasteBanner = By.cssSelector("div#waste");
     private final By userWasteCurrent = By.cssSelector("span#userWasteCurrent");
@@ -16,9 +21,7 @@ public class WastePage {
     private final By continueToReportButton = By.cssSelector("button#to-report");
 
     public WastePage(WebDriver driver) {
-        this.driver = driver;
         basePage = new BasePage(driver);
-        wait = DriverFactory.getWait();
     }
 
     public void goToWasteSection() {

@@ -8,24 +8,26 @@ import utils.DriverFactory;
 
 import java.math.BigDecimal;
 
+/**
+ *
+ * Class created to map all locators from the Side Box and to group the methods related to it
+ *
+ * @author Dennys Barros
+ *
+ */
 public class SideTotalBoxPage {
-    private final WebDriver driver;
-    private final WebDriverWait wait;
     private final BasePage basePage;
 
-    private By currentTotalEmissionsValue = By.cssSelector("span.totalEmissions");
-    private By newTotalEmissionsValue = By.cssSelector("span.newEmissionTotal");
-    private By averageUSValue = By.cssSelector("span.aSideUSTotal");
-    private By numberOfPeopleValue = By.cssSelector("span.number-of-people");
-    private By usersZipCodeValue = By.cssSelector("span.users-zip");
-    private By viewFullReportButton = By.cssSelector("button#view-full-report");
-    private By startOverLink = By.cssSelector("a#start-over");
-
+    private final By currentTotalEmissionsValue = By.cssSelector("span.totalEmissions");
+    private final By newTotalEmissionsValue = By.cssSelector("span.newEmissionTotal");
+    private final By averageUSValue = By.cssSelector("span.aSideUSTotal");
+    private final By numberOfPeopleValue = By.cssSelector("span.number-of-people");
+    private final By usersZipCodeValue = By.cssSelector("span.users-zip");
+    private final By viewFullReportButton = By.cssSelector("button#view-full-report");
+    private final By startOverLink = By.cssSelector("a#start-over");
 
     public SideTotalBoxPage(WebDriver driver) {
-        this.driver = driver;
         basePage = new BasePage(driver);
-        wait = DriverFactory.getWait();
     }
 
     public String getAverageEmissionsValue() {
@@ -34,6 +36,10 @@ public class SideTotalBoxPage {
 
     public String getCurrentTotalEmissions() {
         return basePage.getTextFromLocator(currentTotalEmissionsValue);
+    }
+
+    public void viewReport() {
+        basePage.clickOnElement(viewFullReportButton);
     }
 
 }

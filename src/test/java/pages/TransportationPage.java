@@ -6,48 +6,40 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BasePage;
 import utils.DriverFactory;
 
+/**
+ *
+ * Class created to map all locators from Transportation page and to group the methods related to it
+ *
+ *
+ */
 public class TransportationPage {
-    private final WebDriver driver;
-    private final WebDriverWait wait;
     private final BasePage basePage;
-
     private final By transportationBanner = By.cssSelector("div#transportation");
-
     private final By numVehiclesSelect = By.cssSelector("select#numVehiclesInput");
-
     private final By maintenanceCurrentSelect = By.cssSelector("select#maintCurrentSelect");
-
     private final By vehicle1Miles = By.cssSelector("input#vehicle1Miles");
     private final By vehicle1Select = By.cssSelector("select#vehicle1Select");
     private final By vehicle1GasMileage = By.cssSelector("input#vehicle1GasMileage");
     private final By vehicle1Co2 = By.cssSelector("span.vehicle1Co2");
-
     private final By vehicle2Miles = By.cssSelector("input#vehicle2Miles");
     private final By vehicle2Select = By.cssSelector("select#vehicle2Select");
     private final By vehicle2GasMileage = By.cssSelector("input#vehicle2GasMileage");
     private final By vehicle2Co2 = By.cssSelector("span.vehicle2Co2");
-
     private final By maintenanceReduceSelect = By.cssSelector("select#maintReduceSelect");
     private final By reduceMilesInput1 = By.cssSelector("input#reduceMilesInput1");
     private final By reduceMilesSelect1 = By.cssSelector("select#reduceMilesSelect1");
     private final By replaceVehicleInput1 = By.cssSelector("input#replaceVehicleInput1");
-
     private final By reduceMilesInput2 = By.cssSelector("input#reduceMilesInput2");
     private final By reduceMilesSelect2 = By.cssSelector("select#reduceMilesSelect2");
     private final By replaceVehicleInput2 = By.cssSelector("input#replaceVehicleInput2");
-
     private final By continueToWasteButton = By.cssSelector("button#to-waste");
     private final By backToHomeEnergyButton = By.cssSelector("button#back-to-home-energy");
-
     private final By vehicle1Table = By.cssSelector("table#revVehicle1");
     private final By vehicle2Table = By.cssSelector("table#revVehicle2");
-
     private final By errorMessageCompleteVehicleAbove = By.cssSelector("li#error-vehicle-reduction");
 
     public TransportationPage(WebDriver driver) {
-        this.driver = driver;
         basePage = new BasePage(driver);
-        wait = DriverFactory.getWait();
     }
 
     public void goToTransportationSection() {
