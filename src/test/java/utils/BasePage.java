@@ -3,6 +3,7 @@ package utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
@@ -27,6 +28,22 @@ public class BasePage {
 
     public boolean isElementPresent(By locator) {
         return driver.findElements(locator).size() != 0;
+    }
+
+    public boolean isElementVisible(By locator) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator).isDisplayed();
+    }
+
+    public String getTextFromLocator(By locator) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator).getText();
+    }
+
+    public void selectElementByText(By locator, String text) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        Select select = new Select(driver.findElement(locator));
+        select.selectByVisibleText(text);
     }
 
 }
