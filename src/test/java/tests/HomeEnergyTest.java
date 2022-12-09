@@ -5,28 +5,21 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.*;
-import utils.BasePage;
 import utils.DriverFactory;
 import utils.ResourcesParser;
 import utils.Utils;
 
-import java.util.concurrent.TimeUnit;
-
-public class CFCTest {
+public class HomeEnergyTest {
 
     private final WebDriver driver = DriverFactory.getDriver();
-    private final CFCMainPage cfcMainPage = new CFCMainPage(driver);
-    private final WastePage wastePage = new WastePage(driver);
+    private final CalculatorHomePage calculatorHomePage = new CalculatorHomePage(driver);
     private final SideTotalBoxPage sideTotalBoxPage = new SideTotalBoxPage(driver);
     private final HomeEnergyPage homeEnergyPage = new HomeEnergyPage(driver);
-    private final TransportationPage transportationPage = new TransportationPage(driver);
     private final Calculations calculations = new Calculations();
-    private final Utils utils = new Utils();
     private final ResourcesParser resourcesParser = new ResourcesParser();
-    private final ReportPage reportPage = new ReportPage(driver);
+    private final Utils utils = new Utils();
 
 
     @BeforeEach
@@ -39,21 +32,17 @@ public class CFCTest {
         DriverFactory.quitDriver();
     }
 
-    @Test
-    public void wasteAverageTest() {
-        cfcMainPage.fillCarbonFootprintValues("5", "00006");
-
-        wastePage.goToWasteSection();
-
-        double wasteAverageCalculation = calculations.calculateWasteAverage(5);
-
-        String expectedResult = utils.roundFormatNumberAndConvertToString(wasteAverageCalculation);
-        Assertions.assertEquals(expectedResult, sideTotalBoxPage.getAverageEmissionsValue(), "Average calculation number is not correct");
-    }
-
+    /**
+     *
+     * Test to check if the Gas Emission value is being correctly calculated.
+     * @see Calculations#calculateNaturalGasEmission
+     *
+     * @author Dennys Barros
+     *
+     */
     @Test
     public void naturalGasEmissionCalculationTest() {
-        cfcMainPage.fillCarbonFootprintValues("1", "00006");
+        calculatorHomePage.fillCarbonFootprintValues("1", "00006");
         homeEnergyPage.selectPrimaryHeatingSource("Natural Gas");
         homeEnergyPage.fillNaturalGasMonthlyBill("23", "Dollars");
 
@@ -63,13 +52,21 @@ public class CFCTest {
         Assertions.assertEquals(expectedResult, homeEnergyPage.getNaturalGasCalculationValue());
     }
 
+    /**
+     *
+     * Test to check if the Electricity value is being correctly calculated.
+     * @see Calculations#calculateElectricityEmission
+     *
+     * @author Dennys Barros
+     *
+     */
     @Test
     public void electricityEmissionCalculationTest() {
         String zipCode = "00006";
         String avgValue = "250";
         String percentage = "10";
 
-        cfcMainPage.fillCarbonFootprintValues("1", zipCode);
+        calculatorHomePage.fillCarbonFootprintValues("1", zipCode);
         homeEnergyPage.selectPrimaryHeatingSource("Electricity");
         homeEnergyPage.fillElectricityMonthlyBill(avgValue, "Dollars", percentage);
 
@@ -79,12 +76,20 @@ public class CFCTest {
         Assertions.assertEquals(expectedResult, homeEnergyPage.getElectricityCalculationValue());
     }
 
+    /**
+     *
+     * Test to check if the Fuel Oil value is being correctly calculated.
+     * @see Calculations#calculateFuelOilEmission
+     *
+     * @author Dennys Barros
+     *
+     */
     @Test
     public void fuelOilEmissionCalculationTest() {
         String zipCode = "00006";
         String avgValue = "80";
 
-        cfcMainPage.fillCarbonFootprintValues("1", zipCode);
+        calculatorHomePage.fillCarbonFootprintValues("1", zipCode);
         homeEnergyPage.selectPrimaryHeatingSource("Fuel Oil");
         homeEnergyPage.fillFuelOilMonthlyBill(avgValue, "Dollars");
 
@@ -94,12 +99,20 @@ public class CFCTest {
         Assertions.assertEquals(expectedResult, homeEnergyPage.getFuelOilCalculationValue());
     }
 
+    /**
+     *
+     * Test to check if the Propane value is being correctly calculated.
+     * @see Calculations#calculatePropaneEmission
+     *
+     * @author Dennys Barros
+     *
+     */
     @Test
     public void propaneEmissionCalculationTest() {
         String zipCode = "00006";
         String avgValue = "37";
 
-        cfcMainPage.fillCarbonFootprintValues("1", zipCode);
+        calculatorHomePage.fillCarbonFootprintValues("1", zipCode);
         homeEnergyPage.selectPrimaryHeatingSource("Propane");
         homeEnergyPage.fillPropaneMonthlyBill(avgValue, "Dollars");
 
@@ -107,8 +120,15 @@ public class CFCTest {
         Assertions.assertEquals(expectedResult, homeEnergyPage.getPropaneCalculationValue());
     }
 
+    /**
+     *
+     * Test to check if the total emission for energy considering all forms of it are being correctly calculated
+     *
+     * @author Dennys Barros
+     *
+     */
     @Test
-    public void homeEnergyDollarsCalculationTest() {
+    public void homeEnergyInDollarsCalculationTest() {
         int electricityPercentage = 0;
         String zipCode = "00006";
         String fuelOilMonthly = "80";
@@ -116,7 +136,7 @@ public class CFCTest {
         String electricityMonthly = "250";
         String naturalGasMonthly = "24";
 
-        cfcMainPage.fillCarbonFootprintValues("1", zipCode);
+        calculatorHomePage.fillCarbonFootprintValues("1", zipCode);
 
         homeEnergyPage.selectPrimaryHeatingSource("Electricity");
         homeEnergyPage.fillFuelOilMonthlyBill(fuelOilMonthly, "Dollars");
@@ -133,14 +153,4 @@ public class CFCTest {
         String expectedResult = utils.roundFormatNumberAndConvertToString(finalNumber);
         Assertions.assertEquals(expectedResult, sideTotalBoxPage.getCurrentTotalEmissions());
     }
-
-
-
-
-
-
-
-
-
-
 }
