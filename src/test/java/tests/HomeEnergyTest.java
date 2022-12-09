@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import pages.*;
 import utils.BasePage;
 import utils.DriverFactory;
+import utils.ResourcesParser;
 import utils.Utils;
 
 import java.util.concurrent.TimeUnit;
@@ -24,10 +25,13 @@ public class CFCTest {
     private final TransportationPage transportationPage = new TransportationPage(driver);
     private final Calculations calculations = new Calculations();
     private final Utils utils = new Utils();
+    private final ResourcesParser resourcesParser = new ResourcesParser();
+    private final ReportPage reportPage = new ReportPage(driver);
+
 
     @BeforeEach
     public void setUp() {
-        driver.get("https://www3.epa.gov/carbon-footprint-calculator/");
+        driver.get(resourcesParser.getAppProperty("cfc_prod_url"));
     }
 
     @AfterEach
@@ -130,107 +134,13 @@ public class CFCTest {
         Assertions.assertEquals(expectedResult, sideTotalBoxPage.getCurrentTotalEmissions());
     }
 
-    @Test
-    public void carFormUpdatesAccordingToCarNumberTest() {
-        cfcMainPage.fillCarbonFootprintValues("5", "00002");
-        transportationPage.goToTransportationSection();
-        transportationPage.setNumberOfVehicles("2");
 
-        Assertions.assertTrue(transportationPage.checkVehicle2TableVisibility());
 
-        transportationPage.setNumberOfVehicles("0");
 
-        Assertions.assertFalse(transportationPage.checkVehicle1TableVisibility());
-        Assertions.assertFalse(transportationPage.checkVehicle2TableVisibility());
-    }
 
-    @Test
-    public void reduceEmissionMaintUpdatesAccordingToCurrentMaintTest() {
-        cfcMainPage.fillCarbonFootprintValues("5", "00002");
-        transportationPage.goToTransportationSection();
-        transportationPage.setNumberOfVehicles("1");
 
-        transportationPage.selectCurrentMaintenance("Already Done");
 
-        Assertions.assertFalse(transportationPage.checkReduceMaintenanceVisibility());
-    }
 
-    /**
-     * Test to check if an error message dialog is displayed when the user tries to add data into the
-     * Reduce Your Emissions section on Transportation before filling the data from the Current Emissions section
-     *
-     * @author Dennys Barros
-     *
-     */
-    @Test
-    public void checkCompleteVehicleEntriesAboveFirstErrorMessageTest() {
-        cfcMainPage.fillCarbonFootprintValues("5", "00002");
-        transportationPage.goToTransportationSection();
-        transportationPage.setNumberOfVehicles("2");
 
-        transportationPage.fillVehicle1ReduceData("1");
 
-        Assertions.assertTrue(transportationPage.checkCompleteVehicleEntriesAboveFirstErrorMessageVisibility());
-    }
-
-    /**
-     * Test to check if Reduce Your Emissions block from the Waste section updates according to the
-     * selections from the Current Emissions block. If a product is selected on Current Emissions block
-     * the same product must disappear on the Reduce Your Emissions block.
-     *
-     * @author Dennys Barros
-     *
-     */
-    @Test
-    public void checkReduceWasteSectionUpdatesAccordingToTheCurrentWasterEmissionsTest(){
-        cfcMainPage.fillCarbonFootprintValues("5", "00002");
-        wastePage.goToWasteSection();
-
-        wastePage.clickOnProductFromCurrentEmission("plastic");
-        wastePage.clickOnProductFromCurrentEmission("newspaper");
-
-        Assertions.assertFalse(wastePage.checkProductFromReduceEmissionVisibility("plastic"));
-        Assertions.assertFalse(wastePage.checkProductFromReduceEmissionVisibility("newspaper"));
-
-        wastePage.clickOnProductFromCurrentEmission("plastic");
-        wastePage.clickOnProductFromCurrentEmission("newspaper");
-
-        Assertions.assertTrue(wastePage.checkProductFromReduceEmissionVisibility("plastic"));
-        Assertions.assertTrue(wastePage.checkProductFromReduceEmissionVisibility("newspaper"));
-    }
-
-    public void startOverTest() {
-        cfcMainPage.fillCarbonFootprintValues("5", "00002");
-        homeEnergyPage.selectPrimaryHeatingSource("Electricity");
-        homeEnergyPage.fillFuelOilMonthlyBill("200", "Dollars");
-        homeEnergyPage.fillElectricityMonthlyBill("200", "kWh", "0");
-        homeEnergyPage.fillPropaneMonthlyBill("300", "Gallons");
-        homeEnergyPage.fillNaturalGasMonthlyBill("1", "Therms");
-
-        homeEnergyPage.fillHeatingAndCoolingSection("2", "2");
-        homeEnergyPage.fillEnergyStarLightsNumber("2");
-        homeEnergyPage.fillPowerSourceAndSettingsSection("Will Do", "20");
-        homeEnergyPage.fillWashingAndDrying("Will Not Do", "1", "Already Done", "50% of my Laundry");
-        homeEnergyPage.fillEnergyStarSection("Will Do", "Will Do", "Already Done");
-
-        homeEnergyPage.continueToTransportation();
-
-        transportationPage.setNumberOfVehicles("2");
-        transportationPage.selectCurrentMaintenance("Already Done");
-
-        transportationPage.fillVehicle1CurrentData("240", "Per Week", "21.6");
-        transportationPage.fillVehicle2CurrentData("240", "Per Week", "21.6");
-
-        transportationPage.fillVehicle1ReduceData("40", "Per Week", "22");
-        transportationPage.fillVehicle2ReduceData("40", "Per Week", "22");
-
-        transportationPage.continueToWaste();
-
-        wastePage.clickOnProductFromCurrentEmission("plastic");
-
-        wastePage.clickOnProductFromReduceEmission("newspaper");
-
-        wastePage.continueToReport();
-
-    }
 }
