@@ -2,8 +2,8 @@ package utils;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
-
-import java.io.*;
+import java.io.InputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,7 +14,7 @@ public class ResourcesParser {
 
     public ResourcesParser() {
         try {
-            InputStream inputStreamResources = Files.newInputStream(Paths.get("resources/assumptions.json"));
+            InputStream inputStreamResources = Files.newInputStream(Paths.get("resources/properties.json"));
             InputStream inputStreamZipCode = Files.newInputStream(Paths.get("resources/emissions_by_zipcode.json"));
             this.resourcesTxt = IOUtils.toString(inputStreamResources, StandardCharsets.UTF_8);
             this.zipCodeEfText = IOUtils.toString(inputStreamZipCode, StandardCharsets.UTF_8);
@@ -35,6 +35,12 @@ public class ResourcesParser {
         JSONObject json = new JSONObject(zipCodeEfText);
         JSONObject zipCodeData = json.getJSONObject(zipcode);
         return zipCodeData.getBigDecimal("e_factor").doubleValue() / 1000;
+    }
+
+    public String getAppProperty(String property){
+        JSONObject json = new JSONObject(resourcesTxt);
+        JSONObject appProperties = json.getJSONObject("app_properties");
+        return appProperties.getString(property);
     }
 
 }

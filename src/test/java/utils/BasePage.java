@@ -31,7 +31,6 @@ public class BasePage {
     }
 
     public boolean isElementVisible(By locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElement(locator).isDisplayed();
     }
 
