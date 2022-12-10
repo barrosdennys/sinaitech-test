@@ -7,10 +7,7 @@ import utils.BasePage;
 import utils.DriverFactory;
 
 /**
- *
  * Class created to map all locators from Transportation page and to group the methods related to it
- *
- *
  */
 public class TransportationPage {
     private final BasePage basePage;
@@ -51,15 +48,12 @@ public class TransportationPage {
     }
 
     /**
-     *
      * Method created to fill the form for the Vehicle 1 inside the Transportation section
-     * 
-     * @param avgMiles string representing the average miles the vehicle travel per a period of time
-     * @param period string representing the period of time the avgMiles is referring to
-     * @param avgGasMileage string representing the average gas mileage the car is performing
-     *                      
-     * @author Dennys Barros
      *
+     * @param avgMiles      string representing the average miles the vehicle travel per a period of time
+     * @param period        string representing the period of time the avgMiles is referring to
+     * @param avgGasMileage string representing the average gas mileage the car is performing
+     * @author Dennys Barros
      */
     public void fillVehicle1CurrentData(String avgMiles, String period, String avgGasMileage) {
         basePage.sendKeysToElement(vehicle1Miles, avgMiles);
@@ -74,14 +68,11 @@ public class TransportationPage {
     }
 
     /**
-     *
      * Method created to select if the car is currently going to maintenance or not
      *
      * @param value string representing if the car is being maintained or not.
-     *             It accepts "Already Done" or "Do Not Do" values
-     *              
+     *              It accepts "Already Done" or "Do Not Do" values
      * @author Dennys Barros
-     *
      */
     public void selectCurrentMaintenance(String value) {
         basePage.selectElementByText(maintenanceCurrentSelect, value);
@@ -92,16 +83,13 @@ public class TransportationPage {
     }
 
     /**
-     *
-     * Method created to fill the form for the Vehicle 1 inside the Reduce Your Emission 
+     * Method created to fill the form for the Vehicle 1 inside the Reduce Your Emission
      * block inside Transportation section
      *
      * @param milesToBeReduced string representing the miles that may be reduced
-     * @param period string representing the period of time the milesToBeReduced is referring to
-     * @param avgGasMileage string representing the average gas mileage the car is performing
-     *
+     * @param period           string representing the period of time the milesToBeReduced is referring to
+     * @param avgGasMileage    string representing the average gas mileage the car is performing
      * @author Dennys Barros
-     *
      */
     public void fillVehicle1ReduceData(String milesToBeReduced, String period, String avgGasMileage) {
         basePage.sendKeysToElement(reduceMilesInput1, milesToBeReduced);
@@ -110,13 +98,10 @@ public class TransportationPage {
     }
 
     /**
-     *
      * Method created to fill the form for the Vehicle 1 inside the Reduce Your Emission
      *
      * @param milesToBeReduced string representing the miles that may be reduced
-     *
      * @author Dennys Barros
-     *
      */
     public void fillVehicle1ReduceData(String milesToBeReduced) {
         basePage.sendKeysToElement(reduceMilesInput1, milesToBeReduced);

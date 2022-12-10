@@ -5,11 +5,9 @@ import org.openqa.selenium.WebDriver;
 import utils.BasePage;
 
 /**
- *
  * Class created to map all locators from the Calculator Home page and to group the methods related to it
  *
  * @author Dennys Barros
- *
  */
 public class CalculatorHomePage {
     private final BasePage basePage;
@@ -21,7 +19,7 @@ public class CalculatorHomePage {
         basePage = new BasePage(driver);
     }
 
-    public void fillCarbonFootprintValues (String householdNumber, String zipCode) {
+    public void fillCarbonFootprintValues(String householdNumber, String zipCode) {
         basePage.sendKeysToElement(householdNumberInput, householdNumber);
         basePage.sendKeysToElement(zipCodeInput, zipCode);
         basePage.clickOnElement(getStartedButton);

@@ -33,12 +33,10 @@ public class HomeEnergyTest {
     }
 
     /**
-     *
      * Test to check if the Gas Emission value is being correctly calculated.
-     * @see Calculations#calculateNaturalGasEmission
      *
      * @author Dennys Barros
-     *
+     * @see Calculations#calculateNaturalGasEmission
      */
     @Test
     public void naturalGasEmissionCalculationTest() {
@@ -53,12 +51,10 @@ public class HomeEnergyTest {
     }
 
     /**
-     *
      * Test to check if the Electricity value is being correctly calculated.
-     * @see Calculations#calculateElectricityEmission
      *
      * @author Dennys Barros
-     *
+     * @see Calculations#calculateElectricityEmission
      */
     @Test
     public void electricityEmissionCalculationTest() {
@@ -77,12 +73,10 @@ public class HomeEnergyTest {
     }
 
     /**
-     *
      * Test to check if the Fuel Oil value is being correctly calculated.
-     * @see Calculations#calculateFuelOilEmission
      *
      * @author Dennys Barros
-     *
+     * @see Calculations#calculateFuelOilEmission
      */
     @Test
     public void fuelOilEmissionCalculationTest() {
@@ -100,12 +94,10 @@ public class HomeEnergyTest {
     }
 
     /**
-     *
      * Test to check if the Propane value is being correctly calculated.
-     * @see Calculations#calculatePropaneEmission
      *
      * @author Dennys Barros
-     *
+     * @see Calculations#calculatePropaneEmission
      */
     @Test
     public void propaneEmissionCalculationTest() {
@@ -121,11 +113,9 @@ public class HomeEnergyTest {
     }
 
     /**
-     *
      * Test to check if the total emission for energy considering all forms of it are being correctly calculated
      *
      * @author Dennys Barros
-     *
      */
     @Test
     public void homeEnergyInDollarsCalculationTest() {
@@ -141,7 +131,7 @@ public class HomeEnergyTest {
         homeEnergyPage.selectPrimaryHeatingSource("Electricity");
         homeEnergyPage.fillFuelOilMonthlyBill(fuelOilMonthly, "Dollars");
         homeEnergyPage.fillPropaneMonthlyBill(propaneMonthly, "Dollars");
-        homeEnergyPage.fillElectricityMonthlyBill(electricityMonthly, "Dollars", "0");
+        homeEnergyPage.fillElectricityMonthlyBill(electricityMonthly, "Dollars", String.valueOf(electricityPercentage));
         homeEnergyPage.fillNaturalGasMonthlyBill(naturalGasMonthly, "Dollars");
 
         double fuelAvgValue = calculations.calculateFuelOilEmission(Double.parseDouble(fuelOilMonthly), "Dollars");

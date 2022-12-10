@@ -9,11 +9,9 @@ import utils.DriverFactory;
 import java.math.BigDecimal;
 
 /**
- *
  * Class created to map all locators from the Side Box and to group the methods related to it
  *
  * @author Dennys Barros
- *
  */
 public class SideTotalBoxPage {
     private final BasePage basePage;

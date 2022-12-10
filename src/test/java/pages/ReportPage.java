@@ -5,11 +5,9 @@ import org.openqa.selenium.WebDriver;
 import utils.BasePage;
 
 /**
- *
  * Class created to map all locators from the Reports page and to group the methods related to it
  *
  * @author Dennys Barros
- *
  */
 public class ReportPage {
 
@@ -24,7 +22,7 @@ public class ReportPage {
         basePage = new BasePage(driver);
     }
 
-    public boolean checkGoodWorkMessageVisibility(){
+    public boolean checkGoodWorkMessageVisibility() {
         return basePage.isElementVisible(goodWorkMessage);
     }
 }

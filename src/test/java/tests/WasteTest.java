@@ -31,11 +31,9 @@ public class WasteTest {
     }
 
     /**
-     *
      * Test to check if the Average US Emission from the Waste section is being calculated correctly.
      *
      * @author Dennys Barros
-     *
      */
     @Test
     public void wasteAverageTest() {

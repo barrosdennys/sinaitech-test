@@ -8,11 +8,9 @@ import utils.DriverFactory;
 import utils.ResourcesParser;
 
 /**
- *
  * Class created to map all locators from the HomeEnergy page and to group the methods related to it
  *
  * @author Dennys Barros
- *
  */
 public class HomeEnergyPage {
     private final BasePage basePage;
@@ -49,8 +47,8 @@ public class HomeEnergyPage {
     public HomeEnergyPage(WebDriver driver) {
         basePage = new BasePage(driver);
     }
-    
-    public void selectPrimaryHeatingSource(String heating){
+
+    public void selectPrimaryHeatingSource(String heating) {
         basePage.selectElementByText(primaryHeatingSource, heating);
     }
 
@@ -84,7 +82,7 @@ public class HomeEnergyPage {
         basePage.sendKeysToElement(lightsToReplaceInput, starLightNumber);
     }
 
-    public void fillPowerSourceAndSettingsSection (String enablePowerManagement, String increaseGreenPower) {
+    public void fillPowerSourceAndSettingsSection(String enablePowerManagement, String increaseGreenPower) {
         basePage.selectElementByText(powerManagementSelect, enablePowerManagement);
         basePage.sendKeysToElement(increaseGreenInput, increaseGreenPower);
     }
@@ -96,29 +94,29 @@ public class HomeEnergyPage {
         basePage.sendKeysToElement(percentageAirDrySelect, useDryingRackNumber);
     }
 
-    public void fillEnergyStarSection (String refrigerator, String furnace, String windows) {
+    public void fillEnergyStarSection(String refrigerator, String furnace, String windows) {
         basePage.selectElementByText(energyStartFridgeSelect, refrigerator);
         basePage.selectElementByText(energyStartFurnaceSelect, furnace);
         basePage.selectElementByText(energyStartWindowSelect, windows);
     }
 
-    public void continueToTransportation(){
+    public void continueToTransportation() {
         basePage.clickOnElement(continueToTransportationButton);
     }
 
-    public String getNaturalGasCalculationValue(){
+    public String getNaturalGasCalculationValue() {
         return basePage.getTextFromLocator(naturalGasCalculationValue);
     }
 
-    public String getElectricityCalculationValue(){
+    public String getElectricityCalculationValue() {
         return basePage.getTextFromLocator(electricityCalculationValue);
     }
 
-    public String getPropaneCalculationValue(){
+    public String getPropaneCalculationValue() {
         return basePage.getTextFromLocator(propaneCalculationValue);
     }
 
-    public String getFuelOilCalculationValue(){
+    public String getFuelOilCalculationValue() {
         return basePage.getTextFromLocator(fuelOilCalculationValue);
     }
 

@@ -2,6 +2,7 @@ package utils;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -37,7 +38,7 @@ public class ResourcesParser {
         return zipCodeData.getBigDecimal("e_factor").doubleValue() / 1000;
     }
 
-    public String getAppProperty(String property){
+    public String getAppProperty(String property) {
         JSONObject json = new JSONObject(resourcesTxt);
         JSONObject appProperties = json.getJSONObject("app_properties");
         return appProperties.getString(property);
