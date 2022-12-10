@@ -1,0 +1,23 @@
+{
+  "app_properties": {
+    "cfc_prod_url": "https://www3.epa.gov/carbon-footprint-calculator/",
+    "browser": "chrome"
+  },
+  "carbonFootprintData": {
+    "nonCO2_vehicle_emissions_ratio": 1.013684744044602,
+    "EF_passenger_vehicle": 19.6,
+    "AC_electricity_percent": 0.14,
+    "Average_elec_CO2_emissions": 14.020,
+    "Average_FO_CO2_emissions": 12.460,
+    "average_mpg": 21.6,
+    "average_waste_emissions": 691.5,
+    "Natural_gas_cost_1000CF": 10.68,
+    "EF_natural_gas": 119.58,
+    "EF_natural_gas_therm": 11.7,
+    "cost_per_kWh": 0.1188,
+    "fuel_oil_cost": 4.02,
+    "EF_fuel_oil_gallon": 22.61,
+    "propane_cost": 2.47,
+    "EF_propane": 12.43
+  }
+}
