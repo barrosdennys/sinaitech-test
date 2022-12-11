@@ -46,7 +46,7 @@ WebdriverManager will download the respective browser and will run the test agai
 
 ### resources
 
-- _resources/emissions_by_zipcode.json - property file that stores emission factor values by zipcode
+- _resources/emissions_by_zipcode.json_ - property file that stores emission factor values by zipcode
 - _resources/resources.json_ - property file that stores carbon emissions values and test properties
 
 ## Test Cases 
