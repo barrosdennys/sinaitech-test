@@ -1,5 +1,5 @@
 
-# Senaitech Tech Challenge - Dennys Barros
+# Sinai Tech Challenge - Dennys Barros
 
 Project automation of the Carbon Footprint Calculator: https://www3.epa.gov/carbon-footprint-calculator/
 
